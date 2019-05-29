@@ -35,5 +35,17 @@ describe('Auth middleware', function () {
         };
         expect(authMiddleware.bind(this, req, {}, () => {})).to.throw();
     });
+
+    it('should yield an userId after decoding the token', function() {
+        // define Unit test context/scenario
+        const req = {
+            get: function () {
+                return 'Bearer xyeknvenrvinreatnvz';
+            }
+        };
+        authMiddleware(req, {}, () => {});
+        expect(req).to.have.property('userId');
+    });
+
 })
 
