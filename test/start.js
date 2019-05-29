@@ -7,7 +7,7 @@ it('should add numbers correctly', function() {
 })
 
 it('should not give a result of 4', function() {
-    const num1 = 2;
+    const num1 = 1;
     const num2 = 3;
-    expect(num1 + num2).not.to.equal(6);
+    expect(num1 + num2).not.to.equal(4);
 })
