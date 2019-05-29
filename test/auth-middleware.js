@@ -11,5 +11,5 @@ it('should throw an error if no authorization header is present', function() {
         }
     };
     // passing the call through mocha and chai
-    expect(authMiddleware.bind(this, req, {}, () => {})).to.throw('Not authenticated.');
+    expect(authMiddleware.bind(this, req, {}, () => {})).to.throw('Not authenticated!');
 })
