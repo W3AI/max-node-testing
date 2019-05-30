@@ -42,6 +42,7 @@ describe('Auth middleware', function () {
         authMiddleware(req, {}, () => { });
         expect(req).to.have.property('userId');
         expect(req).to.have.property('userId', 'fairAI');
+        expect(jwt.verify.called).to.be.true;
         // possible with sinon
         jwt.verify.restore();
     });
