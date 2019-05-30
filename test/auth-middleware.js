@@ -38,9 +38,10 @@ describe('Auth middleware', function () {
         // added sinon to preserve the initial value for jwt.verify / userId
         sinon.stub(jwt, 'verify');
         // this line below is made available by sinon
-        jwt.verify.returns({userId: 'fairAI'});
+        jwt.verify.returns({ userId: 'fairAI' });
         authMiddleware(req, {}, () => { });
         expect(req).to.have.property('userId');
+        expect(req).to.have.property('userId', 'fairAI');
         // possible with sinon
         jwt.verify.restore();
     });
