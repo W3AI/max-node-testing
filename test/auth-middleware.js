@@ -1,5 +1,6 @@
 const expect = require('chai').expect;
 const jwt = require('jsonwebtoken');
+const sinon = require('sinon');
 
 const authMiddleware = require('../middleware/is-auth');
 
@@ -34,11 +35,14 @@ describe('Auth middleware', function () {
                 return 'Bearer xyeknvenrvinreatnvz';
             }
         };
-        jwt.verify = function () {
-            return { userId: 'fairAI' }
-        }
+        // added sinon to preserve the initial value for jwt.verify / userId
+        sinon.stub(jwt, 'verify');
+        // this line below is made available by sinon
+        jwt.verify.returns({userId: 'fairAI'});
         authMiddleware(req, {}, () => { });
         expect(req).to.have.property('userId');
+        // possible with sinon
+        jwt.verify.restore();
     });
 
     it('should throw an error if the token cannot be verified', function () {
