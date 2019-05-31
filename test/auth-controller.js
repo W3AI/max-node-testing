@@ -25,6 +25,16 @@ describe('Auth Controller', function () {
             })
     });
 
+    beforeEach(function() {
+        // to set/reset things before each test
+        // eg: >>> setup new contexts according to the results of Cogito's input queries !!!
+    });
+
+    afterEach(function() {
+        // to cleanup, etc after each test
+        // eg: >>> to mark test / functionality Done and commit to repo and notify successors !!!
+    });
+
     // to add done in function of it() for async/promisses 
     it('should throw an error with code 500 if accessing the database fails', function (done) {
         sinon.stub(User, 'findOne');
