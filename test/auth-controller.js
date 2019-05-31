@@ -60,13 +60,16 @@ describe('Auth Controller - Login', function () {
                 AuthController.getUserStatus(req, res, () => { })
                     .then(() => {
                         expect(res.statusCode).to.be.equal(200);
-                        expect(res.userStatus).to.be.equal('I am new!!');
+                        expect(res.userStatus).to.be.equal('I am new!');
                         // Delete all users from the test database - use an empty obj {}
-                        User.deleteMany({});
-                        mongoose.disconnect().then(() => {
-                            done();
-                        });
-                    })
+                        User.deleteMany({})
+                            .then(() => {
+                                return mongoose.disconnect();
+                            })
+                            .then(() => {
+                                done();
+                            });
+                    });
             })
             .catch(err => console.log(err));
     });
